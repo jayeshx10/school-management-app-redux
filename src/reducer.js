@@ -1,6 +1,6 @@
 /* eslint-disable default-case */
 const initialState = {
-  students: [],
+  students: ["Jayesh", "Vivek"],
   teachers: [],
   classView: [],
   schoolView: {}
@@ -73,12 +73,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         classView: state.students.filter((student) => student.class === payload)
       }
-    case "filterByGender": // none
+    case "filterByGender": // gender (string) --> ['Male', 'Female']
       return {
         ...state,
         classView: state.students.filter((student) => student.gender === payload)
       }
-    case "sortStudents": // proprty name (string) --> ['name', 'age', 'attendance', 'avgMarks']
+    case "sortStudents": // property name (string) --> ['name', 'age', 'attendance', 'avgMarks']
       return {
         ...state,
         classView: state.students.sort((studentA, studentB) => studentA.payload - studentB.payload)
@@ -88,6 +88,8 @@ const reducer = (state = initialState, action) => {
         ...state,
          schoolView: generateSchoolViewData()
       }
+    default: 
+      return state;
   }
 }
 
